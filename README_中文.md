@@ -44,24 +44,24 @@ JSM主要基于Windows系统开发。JSM目前应该也可以在Linux系统上�
   * **[体感鼠标输入](#4-体感鼠标输入)**
   * **[真实世界校准(RWC)](#5-真实世界校准rwc)**
     * **[校准条件](#51-校准条件)**
-    * **[计算3D游戏的RWC](#52-计算3D游戏的rwc)**
-    * **[计算2D游戏的RWC](#53-计算2D游戏的rwc)**
-  * **[ViGEm虚拟手柄](#6-ViGEm虚拟手柄)**
-    * **[Xbox手柄映射](#61-Xbox手柄映射)**
-    * **[DS4手柄映射](#62-DS4手柄映射)**
+    * **[计算3D游戏的RWC](#52-计算3d游戏的rwc)**
+    * **[计算2D游戏的RWC](#53-计算2d游戏的rwc)**
+  * **[ViGEm虚拟手柄](#6-vigem虚拟手柄)**
+    * **[Xbox手柄映射](#61-xbox手柄映射)**
+    * **[DS4手柄映射](#62-ds4手柄映射)**
     * **[虚拟手柄体感](#63-虚拟手柄体感)**
   * **[快速切换](#7-快速切换)**
   * **[触摸板](#8-触摸板)**
-    * **[触摸摇杆](#81-触摸摇杆)**
+    * **[触摸板摇杆](#81-触摸板摇杆)**
   * **[其他命令](#9-其他命令)**
 * **[配置文件](#配置文件)**
-	* **[OnStartup.txt(启动配置)](#1-onstartuptxt(启动配置))**
-	* **[OnReset.txt(重制配置)](#2-onresettxt(重制配置))**
+	* **[OnStartup.txt(启动配置)](#1-onstartuptxt启动配置)**
+	* **[OnReset.txt(重制配置)](#2-onresettxt重制配置)**
 	* **[自动加载功能](#3-自动加载功能)**
 * **[难疑解答](#难疑解答)**
 * **[已知问题](#已知问题)**
-* **[汉化组](#汉化组)**
 * **[制作组](#制作组)**
+  * **[汉化组](#汉化组)**
 * **[资源推荐](#资源推荐)**
 * **[证书](#证书)**
 
@@ -106,7 +106,7 @@ Linux系统适配可以在以下文件中找到:
   * ```cmake .. -DCMAKE_CXX_COMPILER=clang++ && cmake --build .```
 
 ### Linux系统须知
-请注意，JSM主要是为Windows编写的，并且是一个快速开发的程序。
+请注意，JSM主要为Windows编写，并且是一个快速开发的程序。
 
 虽然JSM可以针对Linux进行编译，但请注意，快速的开发速度和有限的Linux维护人员数量意味着Linux版本可能并不可以完全编译。
 
@@ -138,7 +138,7 @@ JSM最初是为Windows系统开发的，这带来了一些副作用，通过代�
 其中包括一个名为GyroConfigs的文件夹。这包括为2D和3D游戏创建配置的模板，以及包含用于简单[真实世界校准(RWC)](#5-真实世界校准rwc)设置的配置文件。
 
 ## 快速入门
-1. 用USB线，蓝牙或接收器连接你的手柄。JSM支持大部分现代手柄，包括所有的Xbox, PS和Switch手柄，尽管Xbox和许多其他没有体感控制所需的运动传感器。
+1. 用USB线，蓝牙或接收器连接你的手柄。JSM支持大部分现代手柄，包括所有的Xbox, PS和Switch手柄，尽管Xbox和许多其他的手柄都没有体感控制所需的运动传感器。
 
 2. 双击打开JoyShockMapper.exe，你会看到终端显示“Welcome to JoyShockMapper”的欢迎语句。
      * 在终端中，你可以开始输入映射:[按键名]=[映射名]。请参阅[数字输入](#1-数字输入)来了解按键和映射是如何命名的。
@@ -649,7 +649,7 @@ LRING = LALT # 慢走
 默认情况下，**neutral position**（居中位置） 大约是手柄放置在一个平面上的状态。你可以通过输入```SET_MOTION_STICK_NEUTRAL```（居中体感摇杆）指令来重新设置居中位置。当这条指令被执行时，手柄当前的姿态将会被认定为“居中”。
 
 一个常见的运动传感器用途就是左倾或者右倾映射。这与体感摇杆有些差别 —— 不管你的手柄处于放平或者立着的状态，倾斜映射都完全一致。
-* **LEAN\_THRESHOLD** （倾斜阈值，默认15度）— 当手柄左或右的倾斜的角度超过此项的阈值时，将会触发对应的**LEAN\_LEFT**（左倾斜）或者**LEAN\_RIGHT**（右倾斜）映射。
+* **LEAN\_THRESHOLD** （倾斜阈值，默认15度）— 当手柄左或右的倾斜的角度超过此项的阈值时，将会触发对应的 **LEAN\_LEFT**（左倾斜）或者 **LEAN\_RIGHT**（右倾斜）映射。
 
 ### 4. 体感鼠标输入
 **首先，关于体感鼠标最重要的信息，**手柄的陀螺仪（实现体感的组件）需要经常校准。这仅仅意味着告诉应用程序“归零点”在哪里。 就像“称重”一样，陀螺仪需要一个可供比较的参考点，以便准确地输出体感。一般通过将手柄放在静止不动的平面上并计算一段时间内的数据实现校准。这些数据因为含有一些“噪声”需要进行平均 —— 并不是由移动造成的移动 —— 但是相较于平时手持手柄的抖动，这些噪声可以忽略不计。
@@ -673,26 +673,26 @@ LRING = LALT # 慢走
 **其次，你需要知道**如何设置体感输入的灵敏度：
 
 * **GYRO\_SENS**（体感灵敏度，默认0.0) - 手柄的旋转和游戏内视角的旋转呈什么关系？数值为1意味着手柄旋转的角度等同于游戏内视角旋转的角度（在2轴限制的情况下）。 数值为2意味着手柄旋转的角度和游戏内视角旋转的角度将呈2倍关系。增加GYRO\_SENS将允许你在姿势别扭前更任意的旋转游戏内的视角。但是降低灵明度允许你更精确的打击小目标。 
-在不直接控制视角，而是光标的游戏中，GYRO\_SENS为1意味着手柄需要旋转一圈将光标从屏幕的一侧移动至另一侧。这类游戏最好使用8或更高的GYRO\_SENS，意味着你需要将手柄旋转360/8 = 45 度来将光标从屏幕的一侧移动至另一侧。
+在不直接控制视角，而是光标的游戏中，GYRO\_SENS 为1意味着手柄需要旋转一圈将光标从屏幕的一侧移动至另一侧。这类游戏最好使用8或更高的 GYRO\_SENS，意味着你需要将手柄旋转360/8 = 45 度来将光标从屏幕的一侧移动至另一侧。
 
 单个GYRO\_SENS可能无法满足你同时想精确瞄准小目标和大范围移动的需求。
 
 JSM允许你设置"当缓慢移动时，我想要这个灵敏度。当快速旋转时，我想要这个灵敏度。"你可以通过设置两个阈值，以及对应阈值的灵敏度来实现这个效果。全部中间值将会被线性插入。使用MIN\_GYRO\_THRESHOLD, MAX\_GYRO\_THRESHOLD, MIN\_GYRO\_SENS 和 MAX\_GYRO\_SENS：
 
-* **MIN\_GYRO\_THRESHOLD**（最低体感阈值)和 **MAX\_GYRO\_THRESHOLD**（最高体感阈值，默认0.0度每秒); **MIN\_GYRO\_SENS** 和 **MAX\_GYRO\_SENS**（最高体感灵敏度，默认 0.0) - MIN\_GYRO\_SENS 和 MAX\_GYRO\_SENS 就和 GYRO\_SENS 一样，但是MIN\_GYRO\_SENS决定手柄旋转速度等于或低于MIN\_GYRO\_THRESHOLD时的灵敏度，而MAX\_GYRO\_SENS决定手柄旋转速度等于或高于MAX\_GYRO\_THRESHOLD时的灵敏度。当手柄的旋转速度在这两个阈值的区间时，体感的灵明度将会被线性改变。阈值的参数基于现实的度每秒。打个比方，当你想要在一秒内旋转1/4个圆，那就是90度每秒。GYRO\_SENS设置将会覆写MIN\_GYRO\_SENS和MAX\_GYRO\_SENS至同一数值。你可以通过添加第二项参数设置不同的**垂直灵敏度**。
+* **MIN\_GYRO\_THRESHOLD**（最低体感阈值)和 **MAX\_GYRO\_THRESHOLD**（最高体感阈值，默认0.0度每秒); **MIN\_GYRO\_SENS** 和 **MAX\_GYRO\_SENS**（最高体感灵敏度，默认 0.0) - MIN\_GYRO\_SENS 和 MAX\_GYRO\_SENS 就和 GYRO\_SENS 一样，但是MIN\_GYRO\_SENS 决定手柄旋转速度等于或低于 MIN\_GYRO\_THRESHOLD 时的灵敏度，而MAX\_GYRO\_SENS 决定手柄旋转速度等于或高于 MAX\_GYRO\_THRESHOLD 时的灵敏度。当手柄的旋转速度在这两个阈值的区间时，体感的灵明度将会被线性改变。阈值的参数基于现实的度每秒。打个比方，当你想要在一秒内旋转1/4个圆，那就是90度每秒。GYRO\_SENS设置将会覆写 MIN\_GYRO\_SENS 和 MAX\_GYRO\_SENS 至同一数值。你可以通过添加第二项参数设置不同的**垂直灵敏度**。
 
 **最后**，如果你想的话，还有一些可以调整的设置：
 
-* **GYRO\_SPACE**（体感参考系，默认本地 LOCAL) - 最简单的体感瞄准方案，将手柄体感的一个轴映射至视角/光标的水平瞄准，另一个映射至垂直瞄准。这将会是你在JSM中将GYRO\_SPACE设置为"LOCAL"的效果。这是最简单，也是最难出错的方案，但是瞄准会在你倾斜手柄时越来越奇怪。如果你希望采用一些结合加速计的高阶体感瞄准方案，PLAYER\_TURN（玩家旋转）正是你需要的。 或者，如果你喜欢通过倾斜手柄来进行瞄准，尝试一下PLAYER\_LEAN（玩家倾斜）。最后，WORLD\_TURN（世界旋转）和 WORLD\_LEAN（世界倾斜）会更比PLAYER\_*选项更注重重力的方向。
-* **GYRO\_AXIS\_X**（体感轴X）和 **GYRO\_AXIS\_Y**（体感轴Y，默认标准 STANDARD）- 需要时允许你反转体感轴的方向。想要体感向左旋转时视角向右旋转? 将GYRO\_AXIS\_X设置为 INVERTED（反转）即可。将其设置为STANDARD（标准）以获得正常模式。
+* **GYRO\_SPACE**（体感参考系，默认本地 LOCAL) - 最简单的体感瞄准方案，将手柄体感的一个轴映射至视角/光标的水平瞄准，另一个映射至垂直瞄准。这将会是你在JSM中将 GYRO\_SPACE 设置为"LOCAL"的效果。这是最简单，也是最难出错的方案，但是瞄准会在你倾斜手柄时越来越奇怪。如果你希望采用一些结合加速计的高阶体感瞄准方案，PLAYER\_TURN（玩家旋转）正是你需要的。 或者，如果你喜欢通过倾斜手柄来进行瞄准，尝试一下 PLAYER\_LEAN（玩家倾斜）。最后，WORLD\_TURN（世界旋转）和 WORLD\_LEAN（世界倾斜）会更比 PLAYER\_* 选项更注重重力的方向。
+* **GYRO\_AXIS\_X**（体感轴X）和 **GYRO\_AXIS\_Y**（体感轴Y，默认标准 STANDARD）- 需要时允许你反转体感轴的方向。想要体感向左旋转时视角向右旋转? 将 GYRO\_AXIS\_X 设置为 INVERTED（反转）即可。将其设置为STANDARD（标准）以获得正常模式。
 * **MOUSE\_X\_FROM\_GYRO\_AXIS**（鼠标X体感轴源）和 **MOUSE\_Y\_FROM\_GYRO\_AXIS**（鼠标Y体感轴源，默认对应 Y 和 X）- 也许你想沿本地Z轴倾斜手柄来左右旋转视角，而不是本地Y轴。或者你想使用单个侧向握持的JoyCon。这将允许你那么做。你的选择是 X, Y, Z, 以及 NONE（当你不想让某个轴被体感影响时）这些参数只会在GYRO\_SPACE 设为LOCAL时生效。
 * **GYRO\_CUTOFF\_SPEED**（体感截止速度，默认 0.0度每秒) - 有些游戏通过设置一个最低阈值来忽略微小的抖动。这就是那项设置。他从来就不好用。不要使用这项功能。有些游戏甚至不允许关闭这个“功能”。我尝试着把它变得更好并加入了这项功能。不过主要的目的就是为了让你体验这个功能有多烂，或者也许你能想我展示这个功能好的一面。
 也许对于按键超大的UI来说无所谓，但是对于*任何*想要精确瞄准目标的玩家来说都非常糟糕，因为任何精确操作都会低于截止范围。就算是非常低的截止速度也可能会将瞄准慢速目标的移动截止掉。
 有些人也许会反驳为什么不将截止速度继续降低？降低截止速度确实可以解决低速卡顿的问题，但是这么低的范围其实和没有差不多。
-* **GYRO\_CUTOFF\_RECOVERY**（体感截止补偿，默认0.0度每秒）- 为了防止GYRO\_CUTOFF\_SPEED带来的慢速卡顿问题，JSM将截止速度与GYRO\_CUTOFF\_RECOVERY做了平滑处理。原先只计划将GYRO\_CUTOFF\_SPEED变得不那么糟糕，不过后面发现就算在GYRO\_CUTOFF\_SPEED为0.0时也可以很好的消除抖动。但是我仅仅将其（也许还会结合下面的平滑）作为最后不得已的手段。
-* **GYRO\_SMOOTH\_THRESHOLD**（体感平滑阈值，默认0.0度每秒）- JSM会选择性的加入平滑以补偿高灵敏度下手带来的抖动。但是平滑也不可避免地带来了延迟，所以游戏*永远*不应该对*任何一个大于很小阈值的输入*作平滑处理。任何等于或者大于这个阈值的体感输入都不会被平滑。任何低于这一阈值的体感输入将会更具GYRO\_SMOOTH\_TIME设置被平滑，从完全平滑过渡到
-一半GYRO\_SMOOTH\_THRESHOLD的半平滑，再到GYRO\_SMOOTH\_THRESHOLD的无平滑。
-* **GYRO\_SMOOTH\_TIME**（默认0.125秒）- 如果有任何应用至体感输入的平滑（由上述的GYRO\_SMOOTH\_THRESHOLD决定），GYRO\_SMOOTH\_TIME决定了平滑的时长。数值越大意味着平滑越多，但也同时产生了极大的滞后和延迟感觉。数值过小时就没任何效果。
+* **GYRO\_CUTOFF\_RECOVERY**（体感截止补偿，默认0.0度每秒）- 为了防止 GYRO\_CUTOFF\_SPEED 带来的慢速卡顿问题，JSM将截止速度与 GYRO\_CUTOFF\_RECOVERY 做了平滑处理。原先只计划将 GYRO\_CUTOFF\_SPEED 变得不那么糟糕，不过后面发现就算在GYRO\_CUTOFF\_SPEED为0.0时也可以很好的消除抖动。但是我仅仅将其（也许还会结合下面的平滑）作为最后不得已的手段。
+* **GYRO\_SMOOTH\_THRESHOLD**（体感平滑阈值，默认0.0度每秒）- JSM会选择性的加入平滑以补偿高灵敏度下手带来的抖动。但是平滑也不可避免地带来了延迟，所以游戏*永远*不应该对*任何一个大于很小阈值的输入*作平滑处理。任何等于或者大于这个阈值的体感输入都不会被平滑。任何低于这一阈值的体感输入将根据 GYRO\_SMOOTH\_TIME 设置被平滑，从完全平滑过渡到
+一半GYRO\_SMOOTH\_THRESHOLD的半平滑，再到 GYRO\_SMOOTH\_THRESHOLD 的无平滑。
+* **GYRO\_SMOOTH\_TIME**（默认0.125秒）- 如果有任何应用至体感输入的平滑（由上述的GYRO\_SMOOTH\_THRESHOLD决定），GYRO\_SMOOTH\_TIME 决定了平滑的时长。数值越大意味着平滑越多，但也同时产生了极大的滞后和延迟感觉。数值过小时就没任何效果。
 
 ### 5. 真实世界校准(RWC)
 *指向性瞄准*，标准瞄准，和体感瞄准全部依赖于 REAL\_WORLD\_CALIBRATION（RWC，真实世界校准）有参考意义，可以夸游戏与玩家的数值。进一步说，如果RWC的设置不正确，会导致*指向性瞄准*无法与摇杆方向吻合。
@@ -718,9 +718,9 @@ JSM允许你设置"当缓慢移动时，我想要这个灵敏度。当快速旋�
 
 *部分*游戏还需要面对的其他变量；**Windows（系统）的鼠标设定**:
 
-* Windows系统的鼠标设置中，有一个叫“提高指针精准度”的选项，JSM无法准确的针对这一选项。  大部分玩家都会关闭这项功能，使用JSM时最好也关闭这个功能。
-* Windows系统的指针速度设置通常也会影响鼠标在游戏中的灵敏度，但是JSM*可以*检测并抵消Windows的鼠标灵敏度设置。可以通过这项功能实现：```COUNTER_OS_MOUSE_SPEED```（抵消系统鼠标设置）。
-唯一麻烦的一点就是有些游戏*不会*受到Windows指针设置的影响。 很多当代射击游戏都使用了“原始输入”来忽略Windows的鼠标设置，以便让玩家在不影响游戏的情况下任意使用“提高指针精准度”和其他系统灵敏度。如果你发现并不需要使用 COUNTER\_OS\_MOUSE\_SPEED 时可以通过```IGNORE_OS_MOUSE_SPEED```（忽略系统鼠标设置）命令来恢复默认，对于支持原始输入的游戏来说更合理。
+* Windows系统的鼠标设置中，有一个叫“提高光标精准度”的选项，JSM无法准确的针对这一选项。  大部分玩家都会关闭这项功能，使用JSM时最好也关闭这个功能。
+* Windows系统的光标速度设置通常也会影响鼠标在游戏中的灵敏度，但是JSM*可以*检测并抵消Windows的鼠标灵敏度设置。可以通过这项功能实现：```COUNTER_OS_MOUSE_SPEED```（抵消系统鼠标设置）。
+唯一麻烦的一点就是有些游戏*不会*受到Windows光标设置的影响。 很多当代射击游戏都使用了“原始输入”来忽略Windows的鼠标设置，以便让玩家在不影响游戏的情况下任意使用“提高光标精准度”和其他系统灵敏度。如果你发现并不需要使用 COUNTER\_OS\_MOUSE\_SPEED 时可以通过```IGNORE_OS_MOUSE_SPEED```（忽略系统鼠标设置）命令来恢复默认，对于支持原始输入的游戏来说更合理。
 
 综上所述，当你想创建一个他人能用的配置时, 请考虑包含 COUNTER\_OS\_MOUSE\_SPEED 。 当使用他人分享的配置时，请记住将 IN\_GAME\_SENS 设置为*你游戏中的*鼠标灵敏度。
 
@@ -728,59 +728,60 @@ JSM允许你设置"当缓慢移动时，我想要这个灵敏度。当快速旋�
 
 #### 5.2 计算3D游戏的RWC
 
-对于*鼠标控制视角的3D游戏*，计算RWC的精确方法是像这样打开指向性瞄准的同时先猜测一个RWC值：
+对于*鼠标控制视角的3D游戏*，精确计算RWC的方法是像这样打开指向性瞄准的同时先猜测一个RWC值：
 
 ```
 RIGHT_STICK_MODE = FLICK
 REAL_WORLD_CALIBRATION = 40
 ```
 
-Now, in-game, use your mouse to fix your aimer precisely on a small target in front of you. Press your right stick forward, and rotate it until you've completed a full turn, releasing the stick once your aimer is in the same position it started before you pressed the stick.
+现在，在游戏中，用鼠标将准星或者某个可参考的刻度移动到很小的一个目标上，将右摇杆向前推，然后持续旋转直到你完成了一整周旋转，当准星或者参考物重新瞄准到那个很小的目标时松开摇杆。
 
-JoyShockMapper remembers the last *flick stick* flick and rotation you did, so now you can simply enter the following command:
+JSM会记忆上一次指向性瞄准的指和旋转参数，现在只需要输入：
 
-```CALCULATE_REAL_WORLD_CALIBRATION```
+```CALCULATE_REAL_WORLD_CALIBRATION```（计算RWC）
 
-This tells JoyShockMapper that your last flick and rotation was exactly one full in-game turn, and that you'd like to know what REAL\_WORLD\_CALIBRATION value you should have. JoyShockMapper will respond with something like, "Recommended REAL\_WORLD\_CALIBRATION: 151.5" (for example). Now you can verify that everything worked correctly by changing your REAL\_WORLD\_CALIBRATION setting like so:
+这将告诉JSM你的上个指向性瞄准在游戏中完成了一整周旋转，你想知道需要将RWC值设置到多少。JSM会返回这样一条信息："Recommended REAL\_WORLD\_CALIBRATION: 151.5"（建议将RWC设置为：151.5。打个比方）。现在，你可以像这样将RWC设置为建议值来验证校准是否准确：
 
-```REAL_WORLD_CALIBRATION = 151.5``` (or whatever value JoyShockMapper gave you).
+```REAL_WORLD_CALIBRATION = 151.5``` （151.5只是个比方，应当填写JSM所推荐的值。）
 
-Now check in-game if this value works by completing a flick stick rotation again. The angle you turn in-game *should* match the angle you turned the stick.
+现在回到游戏，通过指向性瞄准测试准确性。指向的角度*应当*与摇杆指向的角度吻合。
 
-If you want to be even more precise, you can do more than one turn. If, for example, you complete 10 turns in a row without releasing the stick in order to average out any imprecision at the point of releasing the stick, you can add the number of turns after the CALCULATE\_REAL\_WORLD\_CALIBRATION command:
+如果你想获得更高的精确度，你可以多转几圈。比如...你旋转了10圈来最小化释放摇杆时带来的误差，你可以在计算RWC后加上旋转的圈数：
 
 ```CALCULATE_REAL_WORLD_CALIBRATION 10```
 
-You can do this with non-integer turns, as well, such as 0.5 for a half turn.
+这也适用于非整数旋转，比如0.5，对应旋转半圈。
 
 #### 5.3 计算2D游戏的RWC
 
-For *2D games where the mouse directly controls an on-screen cursor*, *flick stick* doesn't have a practical use in general gameplay, but it's still the most useful way to calculate your REAL\_WORLD\_CALIBRATION value. Again, make sure your IN\_GAME\_SENS and COUNTER\_OS\_MOUSE\_SPEED are set as needed, and then we'll start by enabling *flick stick* alongside a first guess at the REAL\_WORLD\_CALIBRATION.
+对于*鼠标控制光标的2D游戏*，指向性瞄准在游玩过程中没有太大的实用性，但是它依然是计算RWC值最快的方法。和上面一样，确保 IN\_GAME\_SENS 和 COUNTER\_OS\_MOUSE\_SPEED 都根据情况正确设置，然后我们和以往一样打开指向性瞄准和猜测一个RWC值：
 
 ```
 RIGHT_STICK_MODE = FLICK
 REAL_WORLD_CALIBRATION = 1
 ```
 
-Notice that this time, our first guess REAL\_WORLD\_CALIBRATION value is *1* instead of *40*. 2D cursor games tend to have a much lower REAL\_WORLD\_CALIBRATION value than 3D camera games, and it's better to underestimate your first guess than overestimate, so you can complete more stick turns and get a more accurate result.
+值得注意的是这次，我们第一次猜测的RWC值为 *1* 而不是 *40*。相较于3D视角游戏，2D光标游戏往往有更低的RWC值，第一次猜低往往比猜高好，这样你需要将摇杆旋转更多次以获得更精确的结果。 
 
-For 2D cursor games, one full rotation of the *flick stick* should move the cursor from one side of the screen to the other. Unlike with 3D camera games, the edges of the screen clamp the mouse position, and will interfere with the results if we try to go through them. When calibrating 3D camera games, it's OK if we overshoot our rotation, because we can still move the stick back the way it came until we precisely land on our target, and it'll work fine. But when calibrating 2D cursor games, overshooting in either direction means that some stick input goes through JoyShockMapper, but the corresponding mouse input is ignored in-game.
+在2D光标游戏中，完成一周指向旋转应该将鼠标光标从屏幕的一侧边缘移动至另一侧。与3D视角游戏不同，屏幕的边缘会限制鼠标光标走的更远，并影响我们计算的结果。在计算3D视角游戏的RWC时过度旋转无关紧要，因为我们可以往反方向重新对其旋转，并得到准确的结果。但是在2D光标游戏中左右任何一个方向的过冲都会导致JSM读取额外的摇杆数据，而游戏中的光标因为已经抵达边缘不会继续前进。
 
-So, start by manually moving the mouse to the left edge of the screen, then press your right stick forward but slightly to the right, so as to avoid accidentally going slightly to the left (and pressing against the left of the screen). Now rotate the stick clockwise until you barely touch the other side of the screen, and then release the right stick. As before, you can now ask JoyShockMapper for a good REAL\_WORLD\_CALIBRATION as follows:
+所以，先从手动将鼠标光标移动到最右边开始，然后将右摇杆向前微微偏右的方向推进，防止指针卡到左侧边框。现在小心的顺时针旋转右摇杆直到光标微微碰到右侧边框，然后松开摇杆。就像上面一样，通过这条指令让JSM自动计算合适的RWC：
 
 ```CALCULATE_REAL_WORLD_CALIBRATION```
 
-JoyShockMapper will then give you your recommended REAL\_WORLD\_CALIBRATION. It might be something like: "Recommended REAL\_WORLD\_CALIBRATION: 5.3759".
+随后JSM会输出推荐的RWC值。
+一般长这样： "Recommended REAL\_WORLD\_CALIBRATION: 5.3759"。
 
-You don't have to tell JoyShockMapper whether you're calibrating for a 2D game or a 3D game. *Flick stick* and other settings rely on a REAL\_WORLD\_CALIBRATION calculated this way for 3D games, but there's no direct translation between the way 3D games work (in angles and rotational velocity) to the way 2D games work (across a 2D plane), so calibrating 2D cursor games as described is simply convention.
+你不需要告诉JSM你想为2D游戏还是3D游戏校准。*指向性瞄准k*与其他设置靠这种方法计算的RWC来支持3D游戏，但是3D游戏（角度和角加速度）和2D游戏（2D平面）之间没有直接的隔应。所以2D游戏的计算就和描述的一样简单通用。
 
-With such a calibrated 2D game, you can choose your GYRO\_SENS or other settings by thinking about how much you want to turn your controller to move across the whole screen. A GYRO\_SENS of *1* would require a complete rotation of the controller to move from one side of the screen to the other, which is quite unreasonable! But a GYRO\_SENS of *8* means you only have to turn the controller one eighth of a complete rotation (45 degrees) to move from one side of the other, which is probably quite reasonable.
+在RWC校准的2D游戏中，你可以赋予 GYRO\_SENS 或其他参数有意义的单位，比如旋转手柄多少度来从屏幕的一侧抵达另一侧。数值为 *1* 的 GYRO\_SENS 意味着手柄需要旋转一整圈来将光标从屏幕的一侧移动到另一侧，当然很不合理！但是数值为 *8* 的 GYRO\_SENS 只需要1/8圈旋转（45 度） to 来将光标从屏幕的一侧移动到另一侧，非常合理。
 
-### 6. ViGEm Virtual Controller
+### 6. ViGEm虚拟手柄
 
 JoyShockMapper can create a virtual xbox or DS4 controller thanks to Nefarius' ViGEm Bus and ViGEm Client softwares. The former needs to be installed by the user before the latter can be used. Once installed, you can set which virtual device you desire to create for each connected device using the command ```VIRTUAL_CONTROLLER = XBOX``` or ```VIRTUAL_CONTROLLER = DS4```. The default value is ```NONE```, which is no virtual controller at all. Rumble will then work on DS4 controllers, but obviously support is game dependant. Using virtual controllers is most likely to work well only if whitelisting is active (HIDGuardian/HIDCerberus), in order to hide the original controller entry from the game and only expose the virtual one. Funny thing to note is that hiding DS4s with HIDGuardian will also hide the virtual DS4 from ViGEm, since Windows cannot tell the virtual controller form the physical one.
 
-#### 6.1 Xbox bindings
+#### 6.1 Xbox手柄映射
 If you have set the virtual controller to the xbox scheme, then the following becomes available to you:
 * **New digital bindings**
 ```
@@ -827,7 +828,7 @@ L+R = X_RS # I don't like to stick click often
 MOTION_STICK_MODE = RIGHT_STICK # Gyro driving
 ```
 
-#### 6.2 DS4 bindings
+#### 6.2 DS4手柄映射
 
 ViGEm also the ability to emulate a Dualshock 4 controller. This can allow you to use a switch pro as a DS4 in a game that has this support built in for example. Setting the virtual controller to DS4 enables the use of these features as well. Take note that these names are aliases to the xbox names, so the logs might display the other label.
 
@@ -857,7 +858,7 @@ ZR_MODE = PS_R2
 
 Using both analog and digital trigger bindings at the same time leads to undefined behaviours. Use modeshift as defined in the next section to disable analog triggers while a digital trigger binding is active.
 
-#### 6.3 Virtual Controller Gyro
+#### 6.3 虚拟手柄体感
 While the virtual controller can't output gyro, JoyShockMapper can convert gyro input to stick output. For example:
 ```
 GYRO_OUTPUT = RIGHT_STICK
@@ -873,7 +874,7 @@ Because games tend to do a lof of processing on stick input to turn it into came
 
 Games sometimes do a lot of other processing to the stick input: easing in, acceleration, direction warping, angular deadzones, for example. JSM does not yet have a way to counter these effects.
 
-### 7. Modeshifts
+### 7. 快速切换
 
 Almost all settings described in previous sections that are assignations (i.e.: uses an equal sign '=') can be chorded like a regular button mapping. This is called a modeshift because you are reconfiguring the controller when specific buttons are pressed. The only *exceptions* are those listed here below.
 ```
@@ -920,7 +921,7 @@ ZLF,GYRO_OFF = NONE\     # RS does not turn gyro off when ZLF is pressed
 ZLF,GYRO_OFF = NONE      # oops undo
 ```
 
-### 8. Touchpad
+### 8. 触摸板
 
 The touchpad always offers the ```TOUCH``` button binding. It will be pressed if there is any touch point active. This binding will overlap with other touch buttons and can be useful to disable gyro for example, or bring up the game map. There is also a dual stage mode setting for the touchpad touch and click: ```TOUCHPAD_DUAL_STAGE_MODE``` which can be any mode explained in the analog triggers, where CAPTURE is the full press or click and TOUCH is the soft press. The default setting is NO_SKIP.
 
@@ -948,7 +949,7 @@ TOUCH,TOUCH = RMOUSE       # Double tap for right click
 CAPTURE = LMOUSE ^LMOUSE   # Or click pad to toggle click (dragging)
 ```
 
-#### 8.1 Touch Sticks
+#### 8.1 触摸板摇杆
 
 A touch stick is a virtual joystick mapped unto the touchpad. As such, a touch stick has and uses all of the familiar binding names and settings, plus one new setting.
 ```
@@ -980,7 +981,7 @@ T2,TRIGHT = 7
 T2,TDOWN = 8
 ```
 
-### 9. Miscellaneous Commands
+### 9. 其他命令
 There are a few other useful commands that don't fall under the above categories:
 
 * **RESET\_MAPPINGS** - This will reset all JoyShockMapper's settings to their default values. This way you don't have to manually unset button mappings or other settings when making a big change. It can be useful to always start your configuration files with the RESET\_MAPPINGS command. The only exceptions to this are the gyro calibration state / settings and AUTOLOAD.
@@ -996,7 +997,7 @@ There are a few other useful commands that don't fall under the above categories
 * **HELP** Will display a list of all commands, all commands containing a given string, or the specific help for all the exact command names given to it.
 * **CLEAR** Remove all text from the console screen.
 
-## Configuration Files
+## 配置文件
 
 All of the commands layed out in the previous section can be saved in a text file and run all at once. In Windows, you can also drag and drop a file from Explorer into the JoyShockMapper console window to enter the full path of that file. These configuration files can additionally reference one another. This allows you to group a few settings as a "building block" for your configurations: such as your gyro sensitivity and acceleration preferences.
 
@@ -1004,15 +1005,15 @@ If you enter a relative path to the file, it should be relative to the folder wh
 
 What more? There are some configuration files that can be run automatically to streamline your experience.
 
-### 1. OnStartup.txt
+### 1. OnStartup.txt(启动配置)
 
 When JoyShockMapper first boots up, it will attempt to load the commands found in the file OnStartup.txt. This file should be in the JSM_DIRECTORY, which is next to your executable by default. This is a great place to automatically calibrate the gyro, load a default configuration for navigating the OS, and/or whitelisting JoyShockMapper.
 
-### 2. OnReset.txt
+### 2. OnReset.txt(重制配置)
 
 This configuration is found in the same location as OnStartup.txt explained above. This file is run each time RESET\_MAPPINGS is called, as well as before OnStartup.txt. This file is a good spot to set a CALIBRATE button for your controller and/or set your GYRO\_SPACE if you're not using the default value.
 
-### 3. Autoload feature
+### 3. 自动加载功能
 
 JoyShockMapper can automatically load a configuration file for your games each time the game window enters focus. Drop the file in the **AutoLoad** folder where JSM_DIRECTORY refers to. JoyShockMapper will look for a name based on the executable name of the program that's in focus. When it goes into focus and autoload is enabled (which it is by default), JoyShockMapper will tell you the name of the file it's looking for - case insensitive.
 
@@ -1021,7 +1022,7 @@ This enables the user to swap focus between your text editor of choice and the g
 Autoload can be turned off by entering the command ```AUTOLOAD = OFF```. You can enable it again with ```AUTOLOAD = ON```.
 
 
-## Troubleshooting
+## 难疑解答
 Some third-party devices that work as controllers on Switch, PS4, or PS5 may not work with JoyShockMapper. It only _officially_ supports first-party controllers. Issues may still arise with those, though. Reach out, and hopefully we can figure out where the problem is.
 
 But first, here are some common problems that are worth checking first.
@@ -1034,20 +1035,24 @@ But first, here are some common problems that are worth checking first.
 
 * Some users have found stick inputs to be unresponsive in one or more directions. This can happen if the stick isn't using enough of the range available to it. In this case, increasing STICK\_DEADZONE\_OUTER can help. In the same way, the stick might be reporting a direction as pressed even when it's not touched. This happens when STICK\_DEADZONE\_INNER is too small.
 
-## Known and Perceived Issues
+## 已知问题
 
-### Bluetooth connectivity
+### 蓝牙连接
 JoyCons and Pro Controllers normally only communicate by Bluetooth. Some Bluetooth adapters can't keep up with these devices, resulting in **laggy input**. This is especially common when more than one device is connected (such as when using a pair of JoyCons). There is nothing JoyShockMapper or JoyShockLibrary can do about this. JoyShockMapper experimentally supports connecting Switch controllers by USB.
 
-## Credits
+## 制作组
 JoyShockMapper was originally created by **Julian "Jibb" Smart**. As of version 1.3, JoyShockMapper has benefited from substantial community contributions. Huge thanks to the following contributors:
 * Nicolas (code)
 * Bryan Rumsey (icon art)
 * Contributer (icon art)
-* Sunny Ye (translation)
+* Betta-Core (translation)
 * Romeo Calota (linux and general portability)
 * Garrett (code)
 * Robin (linux and controller support)
+
+### 汉化组
+如果你认为翻译有任何问题，或者建议，请反馈致QQ：2896378152 或邮箱：lkitdqwb@gmail.com
+未来我也会对体感维基（GyroWiki），YouTube视频和JoyShockMapper软件做翻译以及转载
 
 As of version 3, JoyShockMapper development is lead by **Nicolas Lessard**, who was already a long-time contributor and responsible for many of JoyShockMapper's powerful mapping features, autoload, tray menus, and much more. Have a look at the CHANGELOG for a better idea of who contributed what. While Jibb continues on as a contributor, JoyShockMapper is Nicolas' project now. This means updates won't be bottlenecked by Jibb's availability to approve and build them, and Nicolas has final say on what features are included in new versions. As such, make sure you're on [Nicolas' fork](https://github.com/Electronicks/JoyShockMapper) for the latest developments.
 
@@ -1055,14 +1060,14 @@ JoyShockMapper versions 2.2 and earlier relied a lot on Jibb's [JoyShockLibrary]
 
 Since moving to SDL2, JoyShockMapper uses Jibb's [GamepadMotionHelpers](https://github.com/JibbSmart/GamepadMotionHelpers), a small project that provides the sensor fusion and calibration options of JoyShockLibrary without all the device-specific stuff.
 
-## Helpful Resources
-* [GyroWiki](http://gyrowiki.jibbsmart.com) - All about good gyro controls for games:
-  * Why gyro controls make gaming better;
-  * How developers can do a better job implementing gyro controls;
-  * How to use JoyShockMapper;
-  * User editable collection of user configurations and tips for using JoyShockMapper with a bunch of games.
+## 资源推荐
+* [GyroWiki（体感维基）](http://gyrowiki.jibbsmart.com) - 所有可以体感控制的好游戏:
+* 为什么体感控制使游戏更好;
+* 开发人员如何更好地实现体感控制;
+* 如何使用JoyShockMapper;
+* 用户可编辑的用户配置集合和使用JoyShockMapper与一堆游戏的提示。
 * [GyroGaming subreddit](https://www.reddit.com/r/GyroGaming/)
-* [GyroGaming discord server](https://discord.gg/4w7pCqj).
+* [GyroGaming discord服务器](https://discord.gg/4w7pCqj).
 
-## License
+## 证书
 JoyShockMapper is licensed under the MIT License - see [LICENSE.md](LICENSE.md).
