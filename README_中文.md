@@ -42,10 +42,10 @@ JSM主要基于Windows系统开发。JSM目前应该也可以在Linux系统上�
     * **[数字模式](#34-数字模式)**
     * **[体感摇杆与倾斜映射](#35-体感摇杆与倾斜映射)**
   * **[体感鼠标输入](#4-体感鼠标输入)**
-  * **[真实世界校准(RWC)](#5-真实世界校准(RWC))**
+  * **[真实世界校准(RWC)](#5-真实世界校准rwc)**
     * **[校准条件](#51-校准条件)**
-    * **[3D游戏的RWC](#52-3D游戏的RWC)**
-    * **[2D游戏的RWC](#53-2D游戏RWC)**
+    * **[计算3D游戏的RWC](#52-计算3D游戏的rwc)**
+    * **[计算2D游戏的RWC](#53-计算2D游戏的rwc)**
   * **[ViGEm虚拟手柄](#6-ViGEm虚拟手柄)**
     * **[Xbox手柄映射](#61-Xbox手柄映射)**
     * **[DS4手柄映射](#62-DS4手柄映射)**
@@ -135,7 +135,7 @@ JSM最初是为Windows系统开发的，这带来了一些副作用，通过代�
 ## 玩家安装指南
 最新版本的JSM总是可以在[这里](https://github.com/Electronicks/JoyShockMapper/releases)找到。你所要做的就是解压并运行JoyShockMapper.exe。
 
-其中包括一个名为GyroConfigs的文件夹。这包括为2D和3D游戏创建配置的模板，以及包含用于简单[真实世界校准(RWC)](#5-真实世界校准(RWC))设置的配置文件。
+其中包括一个名为GyroConfigs的文件夹。这包括为2D和3D游戏创建配置的模板，以及包含用于简单[真实世界校准(RWC)](#5-真实世界校准rwc)设置的配置文件。
 
 ## 快速入门
 1. 用USB线，蓝牙或接收器连接你的手柄。JSM支持大部分现代手柄，包括所有的Xbox, PS和Switch手柄，尽管Xbox和许多其他没有体感控制所需的运动传感器。
@@ -159,7 +159,7 @@ JSM最初是为Windows系统开发的，这带来了一些副作用，通过代�
         * 输入命令```RESTART_GYRO_CALIBRATION```开始校准;
 	* 只需几秒钟后，输入```FINISH_GYRO_CALIBRATION```命令，即可完成校准。
 	* 这些命令也可以通过右键托盘图标访问。
-    * JSM依赖于一些功能的真实世界校准值，如轻推摇杆。如果你在[在线数据库](http://gyrowiki.jibbsmart.com/games)中没有找到这个值，请参阅[真实世界校准(RWC)](#5-真实世界校准(RWC))部分，自己计算它。
+    * JSM依赖于一些功能的真实世界校准值，如轻推摇杆。如果你在[在线数据库](http://gyrowiki.jibbsmart.com/games)中没有找到这个值，请参阅[真实世界校准(RWC)](#5-真实世界校准rwc)部分，自己计算它。
 
 5. 如果你遇到一些问题，请确保检查[疑难解答](#疑难解答)部分和[已知问题](#已知问题)。如果你找不到你的答案，你可以在[GyroGaming subreddit](https://www.reddit.com/r/GyroGaming/)和它的[附属的Discord服务器](https://discord.gg/4w7pCqj)上找到更多的帮助。中国社区即将上线，敬请期待！
 
@@ -172,7 +172,7 @@ JSM最初是为Windows系统开发的，这带来了一些副作用，通过代�
 2. **[线性扳机](#2-线性扳机)**: 许多手柄都有2个线性板机：例如DS上的L2和R2。JSM可以对“轻压”和“全下压”状态设置不同的映射，最大化地利用这些扳机。这一功能对于带有微动板机的手柄来说是不可用的，比如任天堂的Pro和JoyCons。
 3. **[摇杆](#3-摇杆配置)**: 摇杆可以以许多不同的方式驱动鼠标或触发映射，如轻推摇杆或滚轮。他们需要设置一个模式，一些特定的模式参数。本节将对此进行说明。
 4. **[体感](#4-体感鼠标输入)**: 用体感控制鼠标通常比用摇杆控制要精确得多。把陀螺仪想象成一个在隐形、无摩擦力鼠标垫上的鼠标。只要你可以旋转手柄，鼠标垫就会延伸到任何地方。对于直接控制视角的游戏来说，摇杆鼠标输入可以快速地以较小的精度完成大幅度旋转，而体感鼠标输入则可以让你在相对有限的范围内做出更精确、更快的移动。
-5. **[真实世界校准(RWC)](#5-真实世界校准(RWC))**: 这个校准值能够让“轻推摇杆”正常工作，让体感和瞄准摇杆设置具有现实参考意义，让玩家能够在不同游戏间共享相同的灵敏度与设置。
+5. **[真实世界校准(RWC)](#5-真实世界校准rwc)**: 这个校准值能够让“轻推摇杆”正常工作，让体感和瞄准摇杆设置具有现实参考意义，让玩家能够在不同游戏间共享相同的灵敏度与设置。
 6. **[ViGEm虚拟手柄](#6-ViGEm虚拟手柄)**: JSM可以连接到nefarus的ViGEm bus软件，创建虚拟xbox和虚拟DS4手柄。要使用此功能，你需要[在此下载并安装最新版本的ViGEm](https://github.com/ViGEm/ViGEmBus/releases/latest)。
 7. **[快速切换](#6-快速切换)**: 手柄的配置可以根据当前按键的按下而动态改变，类似于组合键。例如这可以很方便处理武器轮盘。这被称为模式切换/快速模式切换，以呼应Steam Input而命名。
 8. **[其他命令](#7-其他命令)**: 这些不属于上述类别，但仍然有用。它们通常与JSM本身有关，而不是手柄配置。
@@ -576,7 +576,7 @@ OUTER_RING: 等同于 _STICK_MODE = NO_MOUSE 和 _RING_MODE = OUTER
 * **BACKWARD** 朝后
 * **JoyCon_SIDEWAYS** 左JoyCon朝左，右JoyCon朝右
 
-设置完成后，JSM会讲摇杆的XY轴重新配对至你设置的方向。 CONTROLLER\_ORIENTATION 只影响摇杆（包括体感摇杆）。它不会影响动作键，方向键，等等的布局。 请查阅[体感鼠标输入](#4-体感数鼠标输入) 来重新映射体感的方向。
+设置完成后，JSM会讲摇杆的XY轴重新配对至你设置的方向。 CONTROLLER\_ORIENTATION 只影响摇杆（包括体感摇杆）。它不会影响动作键，方向键，等等的布局。 请查阅[体感鼠标输入](#4-体感数鼠标输入)来重新映射体感的方向。
 
 让我们来看看摇杆的不同模式；
 
@@ -597,7 +597,7 @@ OUTER_RING: 等同于 _STICK_MODE = NO_MOUSE 和 _RING_MODE = OUTER
 
 因为*指向性瞄准*只能水平移动视角，这通常需要结合体感来完成垂直瞄准。
 
-*指向性瞄准*将沿用上面提到的STICK\_DEADZONE\_OUTER（外死区）来决定启动的倾斜范围。 *指向性瞄准*也依赖REAL\_WORLD\_CALIBRATION（真实世界校准）以正确的工作（[后面有提到](#4-真实世界校准(RWC))，这项参数将会定义全部鼠标移动相关的功能）， 这是因为JSM只能通过*刚好的*鼠标移动轨迹，将视角指向正确的方向，而REAL\_WORLD\_CALIBRATION帮助JSM补偿游戏内的灵敏度。当然，原生支持*指向瞄准*的游戏不要求任何校准。*指向性瞄准* 有几项你可以调整的参数：
+*指向性瞄准*将沿用上面提到的STICK\_DEADZONE\_OUTER（外死区）来决定启动的倾斜范围。 *指向性瞄准*也依赖REAL\_WORLD\_CALIBRATION（真实世界校准）以正确的工作（[后面有提到](#5-真实世界校准rwc)，这项参数将会定义全部鼠标移动相关的功能）， 这是因为JSM只能通过*刚好的*鼠标移动轨迹，将视角指向正确的方向，而REAL\_WORLD\_CALIBRATION帮助JSM补偿游戏内的灵敏度。当然，原生支持*指向瞄准*的游戏不要求任何校准。*指向性瞄准* 有几项你可以调整的参数：
 
 * **FLICK\_TIME** （指向时长，默认0.1秒) - 当你向一个方向倾斜摇杆时，需要耗费多少时间将视角移动至指向的方向？我发现0.1秒是个很好的范围，看着不错的同时响应迅速。延时太低时可能会被当成视角瞬间多向锁定的挂哥。
 不要忘记，在指向瞄准后 你依然可以进一步移动摇杆进行旋转调节。中间没有任何额外的平滑\*；视角会牢牢的锁定在摇杆指向的方向上。 FLICK\_TIME只会影响一开始指向瞄准的过程。
@@ -695,40 +695,40 @@ JSM允许你设置"当缓慢移动时，我想要这个灵敏度。当快速旋�
 * **GYRO\_SMOOTH\_TIME**（默认0.125秒）- 如果有任何应用至体感输入的平滑（由上述的GYRO\_SMOOTH\_THRESHOLD决定），GYRO\_SMOOTH\_TIME决定了平滑的时长。数值越大意味着平滑越多，但也同时产生了极大的滞后和延迟感觉。数值过小时就没任何效果。
 
 ### 5. 真实世界校准(RWC)
-*指向性瞄准*，标准瞄准，和体感瞄准全部依赖于 REAL\_WORLD\_CALIBRATION（RWC，真实世界校准）有参考意义，可以夸游戏与玩家的数值。进一步说，如果 REAL\_WORLD\_CALIBRATION 的设置不正确，会导致*指向性瞄准*无法与摇杆方向吻合。
+*指向性瞄准*，标准瞄准，和体感瞄准全部依赖于 REAL\_WORLD\_CALIBRATION（RWC，真实世界校准）有参考意义，可以夸游戏与玩家的数值。进一步说，如果RWC的设置不正确，会导致*指向性瞄准*无法与摇杆方向吻合。
 
-每个游戏都有独立的 REAL\_WORLD\_CALIBRATION 数值来使其他功能正常运作。这极大的简化了分享配置的难度，因为只要有一人得到了一个游戏正确的 REAL\_WORLD\_CALIBRATION 数值， 他就可以将这项数值分享给任何同一游戏的玩家。 [体感维基](http://gyrowiki.jibbsmart.com/games) 正有一个数据库，储存了各个游戏的 REAL\_WORLD\_CALIBRATION（以及每个游戏独特的配置）。你可以通过直接使用这个数据库，避免自己计算，或者你没法在数据库中找到需要的游戏数值时，自己使用JSM内置的工具进行计算，可以将你的计算结果分享到[体感维基](http://gyrowiki.jibbsmart.com/games)来帮助以后的玩家!
+每个游戏都有独立的RWC数值来使其他功能正常运作。这极大的简化了分享配置的难度，因为只要有一人得到了一个游戏正确的RWC数值， 他就可以将这项数值分享给任何同一游戏的玩家。 [体感维基](http://gyrowiki.jibbsmart.com/games) 正有一个数据库，储存了各个游戏的 RWC（以及每个游戏独特的配置）。你可以通过直接使用这个数据库，避免自己计算，或者你没法在数据库中找到需要的游戏数值时，自己使用JSM内置的工具进行计算，可以将你的计算结果分享到[体感维基](http://gyrowiki.jibbsmart.com/games)来帮助以后的玩家!
 
-对于鼠标控制视角的3D游戏， REAL\_WORLD\_CALIBRATION 是一个倍增器，可以将给定的角度转换为鼠标输入，从而在游戏中将视角转换为相同的角度。
+对于鼠标控制视角的3D游戏，RWC是一个倍增器，可以将给定的角度转换为鼠标输入，从而在游戏中将视角转换为相同的角度。
 
-对于鼠标控制光标的2D游戏，REAL\_WORLD\_CALIBRATION 是一个将角度转换为屏幕尺寸比例的倍增器（游戏分辨率影响光标速度的时候）。
+对于鼠标控制光标的2D游戏，RWC是一个将角度转换为屏幕尺寸比例的倍增器（游戏分辨率影响光标速度的时候）。
 
 #### 5.1 校准条件
 
-在我们开始为一个游戏校准良好的 REAL\_WORLD\_CALIBRATION 值前，我们先要弄明白什么影响了灵敏度：
+在我们开始为一个游戏校准良好的RWC值前，我们先要弄明白什么影响了灵敏度：
 
 * 游戏内的鼠标设定
 * Windows（系统）的鼠标设定
 
-就算 REAL\_WORLD\_CALIBRATION 正确设置， **游戏内的鼠标设定** 将会改变视角和鼠标移动的关系：
+就算设置RWC正确， **游戏内的鼠标设定**依然会改变视角和鼠标移动的关系：
 
 * 当你在游戏中开启*鼠标加速*时（有些游戏有这个选项，不过一般默认关闭），你需要将其关闭以便JSM能够精确工作。
 * 大多数游戏都会有*鼠标灵敏度*设置，一般都是个简单的鼠标输入倍增器。JSM无法直接读取这个数值，所以你需要手动定义这项数值以便JSM将其抵消掉。可以通过设置 ```IN_GAME_SENS```来告诉JSM游戏内的灵敏度。  
 打个比方，当使用键鼠游玩时，我的《雷神之锤：冠军》鼠标灵敏度为1.8。所以在我JSM的《雷神之锤：冠军》配置文件中，或者当我使用别人的配置文件时，我会添加 ```IN_GAME_SENS = 1.8``` 以便JSM抵消游戏内的灵敏度差异。
 
-还有*部分*游戏需要面对的其他变量 **Windows（系统）的鼠标设定**:
+*部分*游戏还需要面对的其他变量；**Windows（系统）的鼠标设定**:
 
-* In your Windows mouse settings, there’s an “Enhance pointer precision” option that JoyShockMapper can’t accurately account for. Most gamers play with this option disabled, and it’s preferable for using JoyShockMapper that you disable it, too.
-* Windows’ pointer speed setting will also often affect the way the mouse behaves in game, but JoyShockMapper *can* detect Windows’ pointer speed setting and account for it. This is done with the simple command: ```COUNTER_OS_MOUSE_SPEED```.  
-The only complication is that some games *aren’t* affected by Windows’ pointer speed settings. Many modern shooters use “raw input” to ignore Windows’ settings so the user is free to use “Enhance pointer precision” and whatever sensitivity settings they want in the operating system without it affecting the game. If you’ve used COUNTER\_OS\_MOUSE\_SPEED and realised you shouldn’t have, the command ```IGNORE_OS_MOUSE_SPEED``` restores default behaviour, which is good for games that use raw input.
+* Windows系统的鼠标设置中，有一个叫“提高指针精准度”的选项，JSM无法准确的针对这一选项。  大部分玩家都会关闭这项功能，使用JSM时最好也关闭这个功能。
+* Windows系统的指针速度设置通常也会影响鼠标在游戏中的灵敏度，但是JSM*可以*检测并抵消Windows的鼠标灵敏度设置。可以通过这项功能实现：```COUNTER_OS_MOUSE_SPEED```（抵消系统鼠标设置）。
+唯一麻烦的一点就是有些游戏*不会*受到Windows指针设置的影响。 很多当代射击游戏都使用了“原始输入”来忽略Windows的鼠标设置，以便让玩家在不影响游戏的情况下任意使用“提高指针精准度”和其他系统灵敏度。如果你发现并不需要使用 COUNTER\_OS\_MOUSE\_SPEED 时可以通过```IGNORE_OS_MOUSE_SPEED```（忽略系统鼠标设置）命令来恢复默认，对于支持原始输入的游戏来说更合理。
 
-In summary, when preparing to share a configuration file for others to use, please consider whether COUNTER\_OS\_MOUSE\_SPEED should be included. When using someone else’s configuration file, please remember to set the file’s IN\_GAME\_SENS to whatever *your* in-game mouse sensitivity is.
+综上所述，当你想创建一个他人能用的配置时, 请考虑包含 COUNTER\_OS\_MOUSE\_SPEED 。 当使用他人分享的配置时，请记住将 IN\_GAME\_SENS 设置为*你游戏中的*鼠标灵敏度。
 
-Once you've done this, you're ready to **calculate your game's REAL\_WORLD\_CALIBRATION value**.
+完成这些步骤后，就准备好开始**计算游戏RWC值**吧。
 
-#### 5.2 Calculating the real world calibration in a 3D game
+#### 5.2 计算3D游戏的RWC
 
-For *3D games where the mouse directly controls the camera*, the most accurate way to calculate a good REAL\_WORLD\_CALIBRATION value is to enable *flick stick* along with a first-guess REAL\_WORLD\_CALIBRATION value like so:
+对于*鼠标控制视角的3D游戏*，计算RWC的精确方法是像这样打开指向性瞄准的同时先猜测一个RWC值：
 
 ```
 RIGHT_STICK_MODE = FLICK
@@ -753,7 +753,7 @@ If you want to be even more precise, you can do more than one turn. If, for exam
 
 You can do this with non-integer turns, as well, such as 0.5 for a half turn.
 
-#### 5.3 Calculating the real world calibration in a 2D game
+#### 5.3 计算2D游戏的RWC
 
 For *2D games where the mouse directly controls an on-screen cursor*, *flick stick* doesn't have a practical use in general gameplay, but it's still the most useful way to calculate your REAL\_WORLD\_CALIBRATION value. Again, make sure your IN\_GAME\_SENS and COUNTER\_OS\_MOUSE\_SPEED are set as needed, and then we'll start by enabling *flick stick* alongside a first guess at the REAL\_WORLD\_CALIBRATION.
 
