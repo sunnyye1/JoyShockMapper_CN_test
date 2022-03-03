@@ -14,7 +14,7 @@ JoyShockMapper(JSM）的目标是让你能够使用DS5、DS4、JoyCons、Pro、�
 
 对于开发者而言，JSM2.2以及更早的版本使用的是[JoyShockLibrary(JSL)](https://github.com/jibbsmart/JoyShockLibrary)来实现DS5、DS4，JoyCon和Pro手柄的输入抓取。现在JSM使用[SDL2](https://github.com/libsdl-org/SDL)来提供手柄支持，我已经为SDL2贡献了一些代码，以确保它涵盖了相同的功能支持。
 
-JSM也是[GyroWiki](http://gyrowiki.jibbsmart.com)上很多设想/概念的最佳实践。
+JSM也是[GyroWiki（体感维基）](http://gyrowiki.jibbsmart.com)上很多设想/概念的最佳实践。
 
 JSM主要基于Windows系统开发。JSM目前应该也可以在Linux系统上编译。请参阅下面的说明。如果你遇到了任何麻烦，请告诉我们。
 
@@ -60,6 +60,7 @@ JSM主要基于Windows系统开发。JSM目前应该也可以在Linux系统上�
 	* **[自动加载功能](#3-自动加载功能)**
 * **[难疑解答](#难疑解答)**
 * **[已知问题](#已知问题)**
+* **[汉化组](#汉化组)**
 * **[制作组](#制作组)**
 * **[资源推荐](#资源推荐)**
 * **[证书](#证书)**
@@ -141,7 +142,7 @@ JSM最初是为Windows系统开发的，这带来了一些副作用，通过代�
 
 2. 双击打开JoyShockMapper.exe，你会看到终端显示“Welcome to JoyShockMapper”的欢迎语句。
      * 在终端中，你可以开始输入映射:[按键名]=[映射名]。请参阅[数字输入](#1-数字输入)来了解按键和映射是如何命名的。
-     * [摇杆](#3-摇杆配置)，[体感](#4-体感鼠标输入)以及[线性扳机](#2-线性扳机)需要额外配置: 通常是你想要设置的一些模式、灵敏度值和一些其他的参数。在相应的部分中对此进行了解释。它们遵循相同的格式: [参数名称] = [数值]
+     * [摇杆](#3-摇杆配置)，[体感](#4-体感鼠标输入)以及[线性扳机](#2-线性模拟扳机)需要额外配置: 通常是你想要设置的一些模式、灵敏度值和一些其他的参数。在相应的部分中对此进行了解释。它们遵循相同的格式: [参数名称] = [数值]
 	* 如果你只在终端中输入按键和参数的名称，它们将显示当前数值。
 	* 输入```[参数名称]HELP```，可以查看简短的说明。
 	* 有相当多的命令不像上面那样作赋值工作，而只是运行一个命令（函数）。例如，```RECONNECT_CONTROLLERS```将更新手柄列表，```RESET_MAPPINGS```将所有参数和映射重制为默认值。```README```将引导你找到此文档!
@@ -667,7 +668,7 @@ LRING = LALT # 慢走
 * 点击手柄上的PS，触摸板下压，房子，或者捕捉键来重启陀螺仪校准，或者结束正在进行的校准。
 * 长按手柄上的PS，触摸板下压，房子，或者捕捉键来重启陀螺仪校准，并在松开时结束校准。**警告**：我发现使用我JoyCon上的房子键会干扰体感，因此在我使用长按校准时，松开此按键将会造成一定的误差。如果你也遇到了相似的问题，最好直接通过点击校准各个手柄，或者直接通过上述指令一次校准全部手柄。
 
-因为陀螺仪的物理性质（比如温度）可以影响它们对“归零点”的感知，在开始游戏前校准一次通常可以满足剩下的游玩，但是也可能因为使用过程中的发热要求你重新校准体感。当你发现发现光标在手柄完全不移动时仍然在向一个方向稳定移动时，你就知道手柄的“归零点”有误，需要校准了。
+因为陀螺仪的物理性质（比如温度）可以影响它们对“归零点”的感知，在开始游戏前校准一次通常可以满足剩下的游玩，但是也可能因为使用过程中的发热要求你重新校准体感。当你发现发现光标在手柄完全不移动时仍然在向一个方向稳定移动，你就知道手柄的“归零点”有误，需要校准了。
 
 **其次，你需要知道**如何设置体感输入的灵敏度：
 
@@ -694,28 +695,28 @@ JSM允许你设置"当缓慢移动时，我想要这个灵敏度。当快速旋�
 * **GYRO\_SMOOTH\_TIME**（默认0.125秒）- 如果有任何应用至体感输入的平滑（由上述的GYRO\_SMOOTH\_THRESHOLD决定），GYRO\_SMOOTH\_TIME决定了平滑的时长。数值越大意味着平滑越多，但也同时产生了极大的滞后和延迟感觉。数值过小时就没任何效果。
 
 ### 5. 真实世界校准(RWC)
-*Flick stick*, aim stick, and gyro mouse inputs all rely on REAL\_WORLD\_CALIBRATION to provide useful values that can be shared between games and with other players. Furthermore, if REAL\_WORLD\_CALIBRATION is set incorrectly, *flick stick* flicks will not correspond to the direction you press the stick at all.
+*指向性瞄准*，标准瞄准，和体感瞄准全部依赖于 REAL\_WORLD\_CALIBRATION（RWC，真实世界校准）有参考意义，可以夸游戏与玩家的数值。进一步说，如果 REAL\_WORLD\_CALIBRATION 的设置不正确，会导致*指向性瞄准*无法与摇杆方向吻合。
 
-Every game requires a unique REAL\_WORLD\_CALIBRATION value in order for these other settings to work correctly. This actually really simplifies sharing configuration files, because once one person has calculated an accurate REAL\_WORLD\_CALIBRATION value for a given game, they can share it with anyone else for the same game. [GyroWiki](http://gyrowiki.jibbsmart.com/games) has a database of games and their corresponding REAL\_WORLD\_CALIBRATION (as well as other settings unique to that game). You can use this to avoid having to calculate this value in games you want to play with JoyShockMapper, or if a game isn't in that database, you can help other players by calculating its REAL\_WORLD\_CALIBRATION yourself and contributing it to [GyroWiki](http://gyrowiki.jibbsmart.com/games)!
+每个游戏都有独立的 REAL\_WORLD\_CALIBRATION 数值来使其他功能正常运作。这极大的简化了分享配置的难度，因为只要有一人得到了一个游戏正确的 REAL\_WORLD\_CALIBRATION 数值， 他就可以将这项数值分享给任何同一游戏的玩家。 [体感维基](http://gyrowiki.jibbsmart.com/games) 正有一个数据库，储存了各个游戏的 REAL\_WORLD\_CALIBRATION（以及每个游戏独特的配置）。你可以通过直接使用这个数据库，避免自己计算，或者你没法在数据库中找到需要的游戏数值时，自己使用JSM内置的工具进行计算，可以将你的计算结果分享到[体感维基](http://gyrowiki.jibbsmart.com/games)来帮助以后的玩家!
 
-For 3D games where the mouse directly controls the camera, REAL\_WORLD\_CALIBRATION is a multiplier to turn a given angle in degrees into a mouse input that turns the camera the same angle in-game.
+对于鼠标控制视角的3D游戏， REAL\_WORLD\_CALIBRATION 是一个倍增器，可以将给定的角度转换为鼠标输入，从而在游戏中将视角转换为相同的角度。
 
-For 2D games where the mouse directly controls an on-screen cursor, REAL\_WORLD\_CALIBRATION is a multiplier to turn a given fraction of a full turn into a mouse input that moves the same fraction of the full width of the screen (at 1920x1080 resolution in games where resolution affects cursor speed relative to the size of the screen).
+对于鼠标控制光标的2D游戏，REAL\_WORLD\_CALIBRATION 是一个将角度转换为屏幕尺寸比例的倍增器（游戏分辨率影响光标速度的时候）。
 
-#### 5.1 Prerequisites
+#### 5.1 校准条件
 
-Before we get into how to accurately calculate a good REAL\_WORLD\_CALIBRATION value for a given game, we first need to address two other things that can affect mouse sensitivity:
+在我们开始为一个游戏校准良好的 REAL\_WORLD\_CALIBRATION 值前，我们先要弄明白什么影响了灵敏度：
 
-* In-game mouse settings
-* Windows mouse settings
+* 游戏内的鼠标设定
+* Windows（系统）的鼠标设定
 
-Even if REAL\_WORLD\_CALIBRATION is set correctly, your **in-game mouse settings** will change how the camera or cursor responds to mouse movements:
+就算 REAL\_WORLD\_CALIBRATION 正确设置， **游戏内的鼠标设定** 将会改变视角和鼠标移动的关系：
 
-* If you are playing with *mouse acceleration* enabled (a setting only a few games have, and they will usually have it disabled by default), you’ll need to disable it in-game for JoyShockMapper to work accurately.
-* Most games have a *mouse sensitivity* setting, which is a simple multiplier for the mouse input. JoyShockMapper can't see this value, so you need to tell it what that value is so it can cancel it out. You can do this by setting ```IN_GAME_SENS``` to the game’s mouse sensitivity.  
-For example, for playing with keyboard and mouse, my *Quake Champions* mouse sensitivity is 1.8. So in my *Quake Champions* config files for JoyShockMapper, or whenever I use someone else’s config file, I include the line: ```IN_GAME_SENS = 1.8``` so that JoyShockMapper knows to cancel it out.
+* 当你在游戏中开启*鼠标加速*时（有些游戏有这个选项，不过一般默认关闭），你需要将其关闭以便JSM能够精确工作。
+* 大多数游戏都会有*鼠标灵敏度*设置，一般都是个简单的鼠标输入倍增器。JSM无法直接读取这个数值，所以你需要手动定义这项数值以便JSM将其抵消掉。可以通过设置 ```IN_GAME_SENS```来告诉JSM游戏内的灵敏度。  
+打个比方，当使用键鼠游玩时，我的《雷神之锤：冠军》鼠标灵敏度为1.8。所以在我JSM的《雷神之锤：冠军》配置文件中，或者当我使用别人的配置文件时，我会添加 ```IN_GAME_SENS = 1.8``` 以便JSM抵消游戏内的灵敏度差异。
 
-There’s one other factor that *some* games need to deal with. **Windows mouse settings**:
+还有*部分*游戏需要面对的其他变量 **Windows（系统）的鼠标设定**:
 
 * In your Windows mouse settings, there’s an “Enhance pointer precision” option that JoyShockMapper can’t accurately account for. Most gamers play with this option disabled, and it’s preferable for using JoyShockMapper that you disable it, too.
 * Windows’ pointer speed setting will also often affect the way the mouse behaves in game, but JoyShockMapper *can* detect Windows’ pointer speed setting and account for it. This is done with the simple command: ```COUNTER_OS_MOUSE_SPEED```.  
